@@ -21,23 +21,39 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
-    /* Main App Styles */
+    /* Main App Background & Text */
     .stApp {
         background-color: #0a0a0c !important;
         color: #e4e4e7 !important;
         font-family: 'Inter', sans-serif !important;
     }
 
-    /* Sidebar styling */
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #0a0a0c !important;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #c5a880 !important;
+        border-radius: 4px !important;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #e5c59e !important;
+    }
+
+    /* Sidebar Background and Border */
     [data-testid="stSidebar"] {
         background-color: #060608 !important;
         border-right: 1px solid #1a1a22 !important;
         padding-top: 2rem !important;
     }
 
-    /* Headers */
+    /* Headers & Fonts */
     h1, h2, h3, h4, h5, h6 {
         font-family: 'Cinzel', serif !important;
         color: #c5a880 !important;
@@ -45,16 +61,25 @@ st.markdown(
         letter-spacing: 0.1em !important;
     }
 
+    /* Luxury Metallic Title with Soft Pulsing Glow */
     .luxury-title {
         font-family: 'Cinzel', serif !important;
-        font-size: 2.8rem !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.2em !important;
-        color: #c5a880 !important;
+        font-size: 3.5rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.25em !important;
+        background: linear-gradient(135deg, #f5e5c9 0%, #c5a880 50%, #9e7f56 100%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
         text-align: center !important;
-        margin-top: 1.5rem !important;
-        margin-bottom: 0.2rem !important;
-        text-shadow: 0 0 20px rgba(197, 168, 128, 0.1);
+        margin-top: 2.5rem !important;
+        margin-bottom: 0.4rem !important;
+        text-transform: uppercase !important;
+        animation: goldGlow 4s infinite alternate !important;
+    }
+
+    @keyframes goldGlow {
+        0% { filter: drop-shadow(0 0 4px rgba(197, 168, 128, 0.1)); }
+        100% { filter: drop-shadow(0 0 16px rgba(197, 168, 128, 0.3)); }
     }
 
     .luxury-subtitle {
@@ -63,33 +88,39 @@ st.markdown(
         font-size: 1.1rem !important;
         color: #a1a1aa !important;
         text-align: center !important;
-        margin-bottom: 2.5rem !important;
-        letter-spacing: 0.05em !important;
+        margin-bottom: 3.5rem !important;
+        letter-spacing: 0.08em !important;
     }
 
-    /* Input Fields */
+    /* Input Card Container Effect */
+    div[data-testid="element-container"]:has(textarea) {
+        background-color: rgba(15, 15, 18, 0.7) !important;
+        border: 1px solid rgba(197, 168, 128, 0.15) !important;
+        padding: 1.5rem !important;
+        border-radius: 4px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+        backdrop-filter: blur(12px) !important;
+    }
+
     textarea {
-        background-color: #0f0f12 !important;
+        background-color: #0d0d10 !important;
         color: #f4f4f5 !important;
-        border: 1px solid #1a1a22 !important;
+        border: 1px solid rgba(197, 168, 128, 0.1) !important;
         border-radius: 2px !important;
         font-family: 'Inter', sans-serif !important;
         font-size: 0.95rem !important;
         transition: all 0.3s ease !important;
         padding: 1rem !important;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6) !important;
     }
 
     textarea:focus {
         border-color: #c5a880 !important;
-        box-shadow: 0 0 8px rgba(197, 168, 128, 0.2) !important;
+        box-shadow: 0 0 8px rgba(197, 168, 128, 0.25) !important;
     }
 
-    /* Buttons */
+    /* Unified Button Styling & Transitions */
     div.stButton > button {
-        background-color: transparent !important;
-        color: #c5a880 !important;
-        border: 1px solid #c5a880 !important;
-        padding: 0.7rem 1.8rem !important;
         font-family: 'Inter', sans-serif !important;
         font-weight: 500 !important;
         letter-spacing: 0.15em !important;
@@ -98,25 +129,51 @@ st.markdown(
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
         border-radius: 2px !important;
         width: 100% !important;
+        padding: 0.75rem 1.8rem !important;
         margin-bottom: 1rem !important;
     }
 
-    div.stButton > button:hover {
-        background-color: #c5a880 !important;
+    /* Primary Button Style (Initiate Inquiry) */
+    button[data-testid="stBaseButton-primary"] {
+        background: linear-gradient(135deg, #f5e5c9 0%, #c5a880 100%) !important;
         color: #0a0a0c !important;
-        border-color: #c5a880 !important;
-        box-shadow: 0 0 15px rgba(197, 168, 128, 0.3) !important;
+        border: none !important;
+        font-weight: 600 !important;
+        box-shadow: 0 4px 15px rgba(197, 168, 128, 0.2) !important;
     }
 
-    /* Tabs */
+    button[data-testid="stBaseButton-primary"]:hover {
+        background: linear-gradient(135deg, #ffffff 0%, #c5a880 100%) !important;
+        box-shadow: 0 6px 20px rgba(197, 168, 128, 0.4) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* Secondary Button Style (Reset, Example Cards) */
+    button[data-testid="stBaseButton-secondary"] {
+        background-color: rgba(15, 15, 18, 0.5) !important;
+        color: #c5a880 !important;
+        border: 1px solid rgba(197, 168, 128, 0.25) !important;
+        backdrop-filter: blur(5px) !important;
+    }
+
+    button[data-testid="stBaseButton-secondary"]:hover {
+        color: #0a0a0c !important;
+        background-color: #c5a880 !important;
+        border-color: #c5a880 !important;
+        box-shadow: 0 6px 15px rgba(197, 168, 128, 0.3) !important;
+        transform: translateY(-2px) !important;
+    }
+
+    /* Tabs Layout Styling */
     button[data-baseweb="tab"] {
         font-family: 'Cinzel', serif !important;
-        color: #a1a1aa !important;
+        color: #71717a !important;
         font-size: 0.9rem !important;
-        letter-spacing: 0.1em !important;
-        padding: 1rem 1.5rem !important;
+        letter-spacing: 0.15em !important;
+        padding: 1rem 2rem !important;
         border-bottom: 2px solid transparent !important;
         transition: all 0.3s ease !important;
+        background-color: transparent !important;
     }
 
     button[data-baseweb="tab"]:hover {
@@ -128,64 +185,90 @@ st.markdown(
         border-bottom: 2px solid #c5a880 !important;
     }
 
-    /* Metrics and Cards */
+    /* Metrics Styling */
     div[data-testid="stMetric"] {
         background-color: #0f0f12 !important;
         border: 1px solid #1a1a22 !important;
-        padding: 1rem 1.5rem !important;
-        border-radius: 2px !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+        padding: 1.2rem 1.5rem !important;
+        border-radius: 4px !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    div[data-testid="stMetric"]:hover {
+        border-color: rgba(197, 168, 128, 0.3) !important;
+        transform: translateY(-2px) !important;
     }
 
     div[data-testid="stMetricValue"] {
         font-family: 'Cinzel', serif !important;
         color: #c5a880 !important;
-        font-size: 1.8rem !important;
+        font-size: 2rem !important;
     }
 
     div[data-testid="stMetricLabel"] {
         font-family: 'Inter', sans-serif !important;
         color: #71717a !important;
-        letter-spacing: 0.08em !important;
+        letter-spacing: 0.1em !important;
         text-transform: uppercase !important;
-        font-size: 0.7rem !important;
+        font-size: 0.75rem !important;
     }
 
-    /* Expanders */
+    /* Expanders Styling */
     div[data-testid="stExpander"] {
         background-color: #0f0f12 !important;
         border: 1px solid #1a1a22 !important;
-        border-radius: 2px !important;
+        border-radius: 4px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
     }
 
-    /* Custom Step List */
-    .step-container {
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid #14141a;
+    /* Elegant Sidebar Timeline Methodology */
+    .sidebar-timeline {
+        position: relative;
+        padding-left: 1.5rem;
+        border-left: 1px solid rgba(197, 168, 128, 0.15);
+        margin-left: 0.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .timeline-node {
+        position: absolute;
+        left: -4px;
+        top: 6px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: #c5a880;
+        box-shadow: 0 0 8px #c5a880;
     }
 
     .step-num {
         font-family: 'Cinzel', serif;
         color: #c5a880;
-        font-size: 1.1rem;
-        font-weight: 500;
+        font-size: 1.05rem;
+        font-weight: 600;
         margin-right: 0.5rem;
     }
 
-    /* Info & Success box overrides */
+    /* Divider & Borders styling */
+    hr {
+        border-color: rgba(197, 168, 128, 0.12) !important;
+        margin: 2rem 0 !important;
+    }
+
+    /* Alerts Box overrides */
     div.stAlert {
         background-color: #0f0f12 !important;
-        border: 1px solid #1a1a22 !important;
+        border: 1px solid rgba(197, 168, 128, 0.15) !important;
         color: #e4e4e7 !important;
-        border-radius: 2px !important;
+        border-radius: 4px !important;
     }
 
     div.stAlert > div {
         color: #e4e4e7 !important;
     }
 
-    /* Hide default streamlit indicators */
+    /* Hide default Streamlit overlays */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
@@ -208,24 +291,38 @@ def init_session_state():
 def render_sidebar():
     """Render the sidebar with instructions and tips."""
     with st.sidebar:
-        st.markdown("<h3 style='margin-bottom: 1.5rem;'>METHODOLOGY</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='margin-bottom: 0.5rem;'>METHODOLOGY</h3>", unsafe_allow_html=True)
         
         st.markdown("""
-        <div class="step-container">
-            <span class="step-num">01</span> <strong>Decomposition</strong>
-            <div style="color: #a1a1aa; font-size: 0.85rem; margin-top: 0.2rem;">Orchestrator plan breaks the query into targeted sub-questions.</div>
-        </div>
-        <div class="step-container">
-            <span class="step-num">02</span> <strong>Acquisition</strong>
-            <div style="color: #a1a1aa; font-size: 0.85rem; margin-top: 0.2rem;">Parallel search, scraping, and vector database indexing.</div>
-        </div>
-        <div class="step-container">
-            <span class="step-num">03</span> <strong>Evaluation</strong>
-            <div style="color: #a1a1aa; font-size: 0.85rem; margin-top: 0.2rem;">Automated quality scoring, feedback loops, and gap analysis.</div>
-        </div>
-        <div class="step-container" style="border-bottom: none; margin-bottom: 0;">
-            <span class="step-num">04</span> <strong>Curation</strong>
-            <div style="color: #a1a1aa; font-size: 0.85rem; margin-top: 0.2rem;">Synthesis of a comprehensive markdown report with references.</div>
+        <div class="sidebar-timeline">
+            <div style="position: relative; margin-bottom: 1.8rem;">
+                <div class="timeline-node"></div>
+                <span class="step-num">01</span> <strong style="color: #f4f4f5; font-size: 0.9rem; letter-spacing: 0.05em;">DECOMPOSITION</strong>
+                <div style="color: #8a8a93; font-size: 0.78rem; margin-top: 0.3rem; line-height: 1.4;">
+                    AI orchestrator plans and breaks down the core question into targeted sub-questions.
+                </div>
+            </div>
+            <div style="position: relative; margin-bottom: 1.8rem;">
+                <div class="timeline-node"></div>
+                <span class="step-num">02</span> <strong style="color: #f4f4f5; font-size: 0.9rem; letter-spacing: 0.05em;">ACQUISITION</strong>
+                <div style="color: #8a8a93; font-size: 0.78rem; margin-top: 0.3rem; line-height: 1.4;">
+                    Parallel web scraping, search queries, and real-time vector database ingestion.
+                </div>
+            </div>
+            <div style="position: relative; margin-bottom: 1.8rem;">
+                <div class="timeline-node"></div>
+                <span class="step-num">03</span> <strong style="color: #f4f4f5; font-size: 0.9rem; letter-spacing: 0.05em;">EVALUATION</strong>
+                <div style="color: #8a8a93; font-size: 0.78rem; margin-top: 0.3rem; line-height: 1.4;">
+                    Automated quality loops scoring details and launching follow-up gap sweeps.
+                </div>
+            </div>
+            <div style="position: relative; margin-bottom: 0;">
+                <div class="timeline-node"></div>
+                <span class="step-num">04</span> <strong style="color: #f4f4f5; font-size: 0.9rem; letter-spacing: 0.05em;">CURATION</strong>
+                <div style="color: #8a8a93; font-size: 0.78rem; margin-top: 0.3rem; line-height: 1.4;">
+                    Synthesis of a professional markdown intelligence dossier with citation tracing.
+                </div>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         
@@ -233,13 +330,13 @@ def render_sidebar():
         
         st.markdown("<h3>TECHNOLOGY STACK</h3>", unsafe_allow_html=True)
         st.markdown("""
-        <div style="font-size: 0.85rem; color: #a1a1aa; line-height: 1.6;">
-            • LangGraph Stateful Graphs<br>
-            • LangChain Framework<br>
+        <div style="font-size: 0.82rem; color: #a1a1aa; line-height: 1.7; padding-left: 0.5rem;">
+            • LangGraph Stateful Workflows<br>
+            • LangChain Integration Layer<br>
             • Llama 3.3 (Groq API)<br>
-            • DuckDuckGo Engine<br>
-            • ChromaDB Vector Client<br>
-            • Streamlit Layout
+            • DuckDuckGo Scraper<br>
+            • ChromaDB Vector Storage<br>
+            • Streamlit Client Node
         </div>
         """, unsafe_allow_html=True)
         
@@ -247,16 +344,16 @@ def render_sidebar():
         
         st.markdown("<h3>CREDENTIALS</h3>", unsafe_allow_html=True)
         st.markdown("""
-        <div style="font-size: 0.85rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 1rem;">
+        <div style="font-size: 0.82rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 1rem; padding-left: 0.5rem;">
             Configure your Groq API key in your <code>.env</code> file:
         </div>
-        <pre style="background-color: #0f0f12; border: 1px solid #1a1a22; padding: 0.5rem; color: #c5a880; font-size: 0.8rem; border-radius: 2px;">GROQ_API_KEY=your_key_here</pre>
+        <pre style="background-color: #0f0f12; border: 1px solid #1a1a22; padding: 0.6rem; color: #c5a880; font-size: 0.78rem; border-radius: 3px;">GROQ_API_KEY=your_key_here</pre>
         """, unsafe_allow_html=True)
 
 
 def render_example_questions():
     """Render clickable example questions."""
-    st.markdown("<h3 style='margin-top: 2rem; margin-bottom: 1rem;'>SUGGESTED RESEARCH TOPICS</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-top: 3rem; margin-bottom: 1.5rem; letter-spacing: 0.15em;'>SUGGESTED RESEARCH TOPICS</h3>", unsafe_allow_html=True)
     
     examples = [
         "What are the latest breakthroughs in nuclear fusion energy and when might commercial fusion power plants be operational?",
