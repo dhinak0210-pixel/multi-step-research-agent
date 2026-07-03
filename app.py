@@ -12,9 +12,186 @@ from utils.logger import log
 
 # Page config
 st.set_page_config(
-    page_title="Multi-Step Research Agent",
-    page_icon="🔬",
+    page_title="Aetheris | Autonomous Research Engine",
+    page_icon="✦",
     layout="wide"
+)
+
+# Custom CSS for Ultra-Luxury Aesthetic
+st.markdown(
+    """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+    /* Main App Styles */
+    .stApp {
+        background-color: #0a0a0c !important;
+        color: #e4e4e7 !important;
+        font-family: 'Inter', sans-serif !important;
+    }
+
+    /* Sidebar styling */
+    [data-testid="stSidebar"] {
+        background-color: #060608 !important;
+        border-right: 1px solid #1a1a22 !important;
+        padding-top: 2rem !important;
+    }
+
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cinzel', serif !important;
+        color: #c5a880 !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.1em !important;
+    }
+
+    .luxury-title {
+        font-family: 'Cinzel', serif !important;
+        font-size: 2.8rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.2em !important;
+        color: #c5a880 !important;
+        text-align: center !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 0.2rem !important;
+        text-shadow: 0 0 20px rgba(197, 168, 128, 0.1);
+    }
+
+    .luxury-subtitle {
+        font-family: 'Playfair Display', serif !important;
+        font-style: italic !important;
+        font-size: 1.1rem !important;
+        color: #a1a1aa !important;
+        text-align: center !important;
+        margin-bottom: 2.5rem !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    /* Input Fields */
+    textarea {
+        background-color: #0f0f12 !important;
+        color: #f4f4f5 !important;
+        border: 1px solid #1a1a22 !important;
+        border-radius: 2px !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: 0.95rem !important;
+        transition: all 0.3s ease !important;
+        padding: 1rem !important;
+    }
+
+    textarea:focus {
+        border-color: #c5a880 !important;
+        box-shadow: 0 0 8px rgba(197, 168, 128, 0.2) !important;
+    }
+
+    /* Buttons */
+    div.stButton > button {
+        background-color: transparent !important;
+        color: #c5a880 !important;
+        border: 1px solid #c5a880 !important;
+        padding: 0.7rem 1.8rem !important;
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.15em !important;
+        text-transform: uppercase !important;
+        font-size: 0.8rem !important;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        border-radius: 2px !important;
+        width: 100% !important;
+        margin-bottom: 1rem !important;
+    }
+
+    div.stButton > button:hover {
+        background-color: #c5a880 !important;
+        color: #0a0a0c !important;
+        border-color: #c5a880 !important;
+        box-shadow: 0 0 15px rgba(197, 168, 128, 0.3) !important;
+    }
+
+    /* Tabs */
+    button[data-baseweb="tab"] {
+        font-family: 'Cinzel', serif !important;
+        color: #a1a1aa !important;
+        font-size: 0.9rem !important;
+        letter-spacing: 0.1em !important;
+        padding: 1rem 1.5rem !important;
+        border-bottom: 2px solid transparent !important;
+        transition: all 0.3s ease !important;
+    }
+
+    button[data-baseweb="tab"]:hover {
+        color: #c5a880 !important;
+    }
+
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: #c5a880 !important;
+        border-bottom: 2px solid #c5a880 !important;
+    }
+
+    /* Metrics and Cards */
+    div[data-testid="stMetric"] {
+        background-color: #0f0f12 !important;
+        border: 1px solid #1a1a22 !important;
+        padding: 1rem 1.5rem !important;
+        border-radius: 2px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    }
+
+    div[data-testid="stMetricValue"] {
+        font-family: 'Cinzel', serif !important;
+        color: #c5a880 !important;
+        font-size: 1.8rem !important;
+    }
+
+    div[data-testid="stMetricLabel"] {
+        font-family: 'Inter', sans-serif !important;
+        color: #71717a !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* Expanders */
+    div[data-testid="stExpander"] {
+        background-color: #0f0f12 !important;
+        border: 1px solid #1a1a22 !important;
+        border-radius: 2px !important;
+    }
+
+    /* Custom Step List */
+    .step-container {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #14141a;
+    }
+
+    .step-num {
+        font-family: 'Cinzel', serif;
+        color: #c5a880;
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-right: 0.5rem;
+    }
+
+    /* Info & Success box overrides */
+    div.stAlert {
+        background-color: #0f0f12 !important;
+        border: 1px solid #1a1a22 !important;
+        color: #e4e4e7 !important;
+        border-radius: 2px !important;
+    }
+
+    div.stAlert > div {
+        color: #e4e4e7 !important;
+    }
+
+    /* Hide default streamlit indicators */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True
 )
 
 
@@ -31,61 +208,55 @@ def init_session_state():
 def render_sidebar():
     """Render the sidebar with instructions and tips."""
     with st.sidebar:
-        st.header("⚙️ How It Works")
+        st.markdown("<h3 style='margin-bottom: 1.5rem;'>METHODOLOGY</h3>", unsafe_allow_html=True)
         
         st.markdown("""
-        **1. 📋 Planning**
-        AI breaks your question into 3-5 sub-questions
-        
-        **2. 🔍 Research**
-        Web search + scraping for each sub-question
-        
-        **3. 📊 Review**
-        Quality check and gap analysis
-        
-        **4. 📝 Synthesis**
-        Comprehensive markdown report generation
-        """)
+        <div class="step-container">
+            <span class="step-num">01</span> <strong>Decomposition</strong>
+            <div style="color: #a1a1aa; font-size: 0.85rem; margin-top: 0.2rem;">Orchestrator plan breaks the query into targeted sub-questions.</div>
+        </div>
+        <div class="step-container">
+            <span class="step-num">02</span> <strong>Acquisition</strong>
+            <div style="color: #a1a1aa; font-size: 0.85rem; margin-top: 0.2rem;">Parallel search, scraping, and vector database indexing.</div>
+        </div>
+        <div class="step-container">
+            <span class="step-num">03</span> <strong>Evaluation</strong>
+            <div style="color: #a1a1aa; font-size: 0.85rem; margin-top: 0.2rem;">Automated quality scoring, feedback loops, and gap analysis.</div>
+        </div>
+        <div class="step-container" style="border-bottom: none; margin-bottom: 0;">
+            <span class="step-num">04</span> <strong>Curation</strong>
+            <div style="color: #a1a1aa; font-size: 0.85rem; margin-top: 0.2rem;">Synthesis of a comprehensive markdown report with references.</div>
+        </div>
+        """, unsafe_allow_html=True)
         
         st.divider()
         
-        st.subheader("Tech Stack")
+        st.markdown("<h3>TECHNOLOGY STACK</h3>", unsafe_allow_html=True)
         st.markdown("""
-        - **LangGraph** - Agent orchestration
-        - **LangChain** - LLM chains
-        - **Gemini 1.5 Flash** - AI model
-        - **DuckDuckGo** - Web search
-        - **ChromaDB** - Vector storage
-        - **Streamlit** - Web UI
-        """)
+        <div style="font-size: 0.85rem; color: #a1a1aa; line-height: 1.6;">
+            • LangGraph Stateful Graphs<br>
+            • LangChain Framework<br>
+            • Llama 3.3 (Groq API)<br>
+            • DuckDuckGo Engine<br>
+            • ChromaDB Vector Client<br>
+            • Streamlit Layout
+        </div>
+        """, unsafe_allow_html=True)
         
         st.divider()
         
-        st.subheader("💡 Tips")
+        st.markdown("<h3>CREDENTIALS</h3>", unsafe_allow_html=True)
         st.markdown("""
-        - Be specific in your question
-        - Include context if needed
-        - Ask about recent developments
-        - Complex questions work best
-        """)
-        
-        st.divider()
-        
-        st.subheader("🔑 API Key")
-        st.markdown("""
-        Get your free Groq API key:
-        [console.groq.com/keys](https://console.groq.com/keys)
-        
-        Add it to your `.env` file:
-        ```
-        GROQ_API_KEY=your_key_here
-        ```
-        """)
+        <div style="font-size: 0.85rem; color: #a1a1aa; line-height: 1.5; margin-bottom: 1rem;">
+            Configure your Groq API key in your <code>.env</code> file:
+        </div>
+        <pre style="background-color: #0f0f12; border: 1px solid #1a1a22; padding: 0.5rem; color: #c5a880; font-size: 0.8rem; border-radius: 2px;">GROQ_API_KEY=your_key_here</pre>
+        """, unsafe_allow_html=True)
 
 
 def render_example_questions():
     """Render clickable example questions."""
-    st.subheader("💡 Try These Examples")
+    st.markdown("<h3 style='margin-top: 2rem; margin-bottom: 1rem;'>SUGGESTED RESEARCH TOPICS</h3>", unsafe_allow_html=True)
     
     examples = [
         "What are the latest breakthroughs in nuclear fusion energy and when might commercial fusion power plants be operational?",
@@ -99,7 +270,7 @@ def render_example_questions():
     cols = st.columns(3)
     for i, example in enumerate(examples):
         with cols[i % 3]:
-            if st.button(example[:50] + "...", key=f"example_{i}", use_container_width=True):
+            if st.button(example[:55] + "...", key=f"example_{i}", use_container_width=True):
                 st.session_state.question = example
 
 
@@ -123,7 +294,7 @@ def render_results(result):
         return
     
     # Create tabs
-    tab1, tab2, tab3 = st.tabs(["📝 Final Report", "🔍 Research Details", "📊 Session Stats"])
+    tab1, tab2, tab3 = st.tabs(["INTELLIGENCE REPORT", "COGNITIVE TRACE", "METRICS"])
     
     # Tab 1: Final Report
     with tab1:
@@ -132,7 +303,7 @@ def render_results(result):
         # Download button
         report_text = result.get("report", "")
         st.download_button(
-            label="📥 Download Report as Markdown",
+            label="EXPORT REPORT (.md)",
             data=report_text,
             file_name=f"research_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.md",
             mime="text/markdown"
@@ -140,23 +311,23 @@ def render_results(result):
         
         # Word count
         word_count = len(report_text.split())
-        st.caption(f"📊 Word count: {word_count}")
+        st.markdown(f"<div style='color: #71717a; font-size: 0.8rem; margin-top: 10px;'>Report Volume: {word_count} words</div>", unsafe_allow_html=True)
     
     # Tab 2: Research Details
     with tab2:
-        st.subheader("Research Plan")
+        st.markdown("<h3>Research Plan</h3>", unsafe_allow_html=True)
         st.markdown(f"**Reasoning:** {result.get('plan_reasoning', 'N/A')}")
         
-        st.subheader("Sub-Questions")
+        st.markdown("<h3 style='margin-top: 1.5rem;'>Sub-Questions</h3>", unsafe_allow_html=True)
         for i, sq in enumerate(result.get("sub_questions", []), 1):
             st.markdown(f"{i}. {sq}")
         
         st.divider()
         
-        st.subheader("Findings")
+        st.markdown("<h3>Findings</h3>", unsafe_allow_html=True)
         findings = result.get("findings", [])
         for i, finding in enumerate(findings, 1):
-            with st.expander(f"Finding {i}: {finding.get('sub_question', 'N/A')}"):
+            with st.expander(f"Finding {i:02d}: {finding.get('sub_question', 'N/A')}"):
                 st.markdown(f"**Summary:** {finding.get('summary', 'N/A')}")
                 st.markdown(f"**Gaps:** {finding.get('gaps', 'N/A')}")
                 
@@ -176,37 +347,38 @@ def render_results(result):
             st.metric("Sub-Questions", len(result.get("sub_questions", [])))
         
         with col2:
-            st.metric("Findings", len(result.get("findings", [])))
+            st.metric("Findings Gathered", len(result.get("findings", [])))
         
         with col3:
-            st.metric("Sources", len(result.get("sources", [])))
+            st.metric("Sources Indexed", len(result.get("sources", [])))
         
         with col4:
-            st.metric("Loops", result.get("loop_count", 0))
+            st.metric("Refinement Loops", result.get("loop_count", 0))
+        
+        st.divider()
         
         col5, col6 = st.columns(2)
         
         with col5:
             if st.session_state.start_time:
                 elapsed = time.time() - st.session_state.start_time
-                st.metric("Time Elapsed", f"{elapsed:.1f}s")
+                st.metric("Execution Duration", f"{elapsed:.1f}s")
         
         with col6:
             review = result.get("review", {})
             quality_score = review.get("quality_score", 0)
-            st.metric("Quality Score", f"{quality_score}/10")
+            st.metric("Curation Quality Score", f"{quality_score}/10")
         
         st.divider()
         
-        st.subheader("Sources Visited")
+        st.markdown("<h3>RETRIEVED SOURCES</h3>", unsafe_allow_html=True)
         sources = result.get("sources", [])
         for source in sources:
             st.markdown(f"- [{source}]({source})")
         
         st.divider()
         
-        with st.expander("🔧 Full State (Debug)"):
-            import json
+        with st.expander("System State (Debug)"):
             st.json(result)
 
 
@@ -215,15 +387,15 @@ def main():
     init_session_state()
     render_sidebar()
     
-    # Main page
-    st.title("🔬 Multi-Step Research Agent")
-    st.markdown("AI-powered autonomous research with web search, scraping, and synthesis")
+    # Main page layout
+    st.markdown('<div class="luxury-title">AETHERIS</div>', unsafe_allow_html=True)
+    st.markdown('<div class="luxury-subtitle">Autonomous Cognitive Research & Intelligence Engine</div>', unsafe_allow_html=True)
     
     st.divider()
     
     # Question input
     question = st.text_area(
-        "Enter your research question:",
+        "SPECIFY RESEARCH INQUIRY",
         height=120,
         placeholder="e.g., What are the latest breakthroughs in nuclear fusion energy and when might commercial fusion power plants be operational?",
         value=st.session_state.get("question", "")
@@ -233,10 +405,10 @@ def main():
     col1, col2 = st.columns([1, 1])
     
     with col1:
-        research_button = st.button("🔬 Start Research", type="primary", use_container_width=True)
+        research_button = st.button("INITIATE INQUIRY", type="primary", use_container_width=True)
     
     with col2:
-        clear_button = st.button("🗑️ Clear", use_container_width=True)
+        clear_button = st.button("RESET", use_container_width=True)
     
     # Clear button handler
     if clear_button:
@@ -251,7 +423,7 @@ def main():
     # Research button handler
     if research_button:
         if len(question) < 20:
-            st.warning("⚠️ Please enter a more detailed question (at least 20 characters)")
+            st.warning("Please enter a more substantive query (minimum 20 characters).")
             return
         
         try:
@@ -262,22 +434,22 @@ def main():
             st.session_state.start_time = time.time()
             
             # Run research with progress updates
-            with st.spinner("Research in progress..."):
-                update_progress(progress_placeholder, status_placeholder, "planning", 10, "📋 Planning research strategy...")
+            with st.spinner("Research execution in progress..."):
+                update_progress(progress_placeholder, status_placeholder, "planning", 10, "Formulating strategic inquiry matrix...")
                 time.sleep(0.5)
                 
                 result = run_research(question)
                 
-                update_progress(progress_placeholder, status_placeholder, "researching", 50, "🔍 Searching the web...")
+                update_progress(progress_placeholder, status_placeholder, "researching", 50, "Retrieving digital knowledge resources...")
                 time.sleep(0.3)
                 
-                update_progress(progress_placeholder, status_placeholder, "reviewing", 80, "📊 Reviewing findings...")
+                update_progress(progress_placeholder, status_placeholder, "reviewing", 80, "Evaluating evidence and resolving gaps...")
                 time.sleep(0.3)
                 
-                update_progress(progress_placeholder, status_placeholder, "synthesizing", 95, "📝 Writing report...")
+                update_progress(progress_placeholder, status_placeholder, "synthesizing", 95, "Synthesizing final intelligence report...")
                 time.sleep(0.3)
                 
-                update_progress(progress_placeholder, status_placeholder, "complete", 100, "✅ Complete!")
+                update_progress(progress_placeholder, status_placeholder, "complete", 100, "Inquiry successfully completed.")
                 
                 # Store result
                 st.session_state.research_result = result
@@ -297,24 +469,24 @@ def main():
                 progress_placeholder.empty()
                 status_placeholder.empty()
                 
-                st.success("✅ Research completed successfully!")
+                st.success("Curation completed.")
         
         except ValueError as e:
-            if "GOOGLE_API_KEY" in str(e):
-                st.error("❌ API Key Missing")
+            if "GROQ_API_KEY" in str(e):
+                st.error("Authentication Failed: Groq API Key Missing")
                 st.markdown("""
-                Please set your Google Gemini API key in the `.env` file:
+                Please configure your Groq API key in the `.env` file:
                 
-                1. Get a free key at: [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
-                2. Create a `.env` file in the project directory
-                3. Add: `GOOGLE_API_KEY=your_key_here`
+                1. Obtain an API key from [console.groq.com](https://console.groq.com)
+                2. Set the key in your local workspace `.env` file:
+                   `GROQ_API_KEY=your_key_here`
                 """)
             else:
-                st.error(f"❌ Error: {str(e)}")
+                st.error(f"Execution Error: {str(e)}")
         
         except Exception as e:
-            st.error(f"❌ An error occurred: {str(e)}")
-            st.error("Please check the logs for more details.")
+            st.error(f"An unexpected error occurred: {str(e)}")
+            st.error("Please examine system logs for details.")
     
     # Display previous results
     if st.session_state.research_result:
