@@ -1,3 +1,12 @@
+---
+title: Multi-Step Research Agent
+emoji: 🔬
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 # 🔬 Multi-Step Research Agent
 
 An autonomous AI-powered research agent that breaks down complex questions, searches the web, scrapes content, and synthesizes comprehensive reports using LangGraph orchestration.
